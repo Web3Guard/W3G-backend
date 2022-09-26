@@ -75,8 +75,8 @@ export class InstantService {
     
     if(transactionInfo.state_diff)
     responseData.states = transactionInfo.state_diff.map((stateDiff) => ({
-      name: stateDiff.soltype.name,
-      type: stateDiff.soltype.type,
+      name: (stateDiff.soltype)?stateDiff.soltype.name:null,
+      type: (stateDiff.soltype)?stateDiff.soltype.type:null,
       current: stateDiff.original,
       future: stateDiff.dirty,
     }));
