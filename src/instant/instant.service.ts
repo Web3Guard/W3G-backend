@@ -175,7 +175,7 @@ export class InstantService {
       (participantDetail.changes = `State changed from ${JSON.stringify(
         originalState,
       )} to  ${JSON.stringify(finalState)}`),
-      res.participant.push(participantDetail);
+        res.participant.push(participantDetail);
     }
     return res;
   }

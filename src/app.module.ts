@@ -1,4 +1,4 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { RatingModule } from './rating/rating.module';
 import { InstantModule } from './instant/instant.module';
@@ -14,7 +14,7 @@ import { LoggerModule } from 'nestjs-pino';
         transport: {
           target: 'pino-pretty',
         },
-      }
+      },
     }),
     ConfigModule.forRoot({ isGlobal: true }),
 
