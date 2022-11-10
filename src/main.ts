@@ -8,7 +8,7 @@ async function bootstrap() {
     methods: '*',
     allowedHeaders: '*',
     credentials: true,
-});
+  });
   await app.listen(3001);
 }
 bootstrap();
