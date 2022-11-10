@@ -6,4 +6,5 @@ export class TransactionDto {
   gas: number;
   gas_price: string;
   value: string;
+  block_number: number;
 }
