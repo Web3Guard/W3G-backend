@@ -3,7 +3,7 @@ import { Injectable, Module } from '@nestjs/common';
 import { ethers } from 'ethers';
 import { firstValueFrom } from 'rxjs';
 
-const solc = require('solc');
+import solc from 'solc';
 
 const ETHERSCAN_URL = 'https://api.etherscan.io/api';
 
@@ -77,15 +77,15 @@ export class RatingService {
           ),
     );
     const contractDetails = {};
-    for (let key in output.contracts) {
-      for (let contract in output.contracts[key]) {
+    for (const key in output.contracts) {
+      for (const contract in output.contracts[key]) {
         contractDetails[contract] = output.contracts[key][contract];
       }
     }
 
     const doc = {};
     doc[function_name] = { user_doc: {}, dev_doc: {} };
-    for (let key in contractDetails) {
+    for (const key in contractDetails) {
       const user_doc = contractDetails[key]['userdoc'];
       const dev_doc = contractDetails[key]['devdoc'];
 
