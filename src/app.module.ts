@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { RatingModule } from './rating/rating.module';
 import { InstantModule } from './instant/instant.module';
 import { LoggerModule } from 'nestjs-pino';
+import { SupabaseModule } from './supabase/supabase.module';
 
 @Module({
   imports: [
@@ -29,7 +30,8 @@ import { LoggerModule } from 'nestjs-pino';
     ConfigModule.forRoot({ isGlobal: true }),
 
     InstantModule,
-    RatingModule
+    RatingModule,
+    SupabaseModule
   ],
 })
 export class AppModule {}
