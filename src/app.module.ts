@@ -3,7 +3,9 @@ import { ConfigModule } from '@nestjs/config';
 import { RatingModule } from './rating/rating.module';
 import { InstantModule } from './instant/instant.module';
 import { LoggerModule } from 'nestjs-pino';
-import { SupabaseModule } from './supabase/supabase.module';
+import { PrismaService } from './prisma/prisma.service';
+import { UtilsModule } from './utils/utils.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -31,7 +33,9 @@ import { SupabaseModule } from './supabase/supabase.module';
 
     InstantModule,
     RatingModule,
-    SupabaseModule
+    UtilsModule,
+    AuthModule
   ],
+  providers: [PrismaService],
 })
 export class AppModule {}

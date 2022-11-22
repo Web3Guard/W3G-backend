@@ -5,8 +5,8 @@ import { ConfigService } from '@nestjs/config';
 import { AuthUser } from '@supabase/supabase-js';
 
 @Injectable()
-export class SupabaseStrategy extends PassportStrategy(Strategy, 'supabase') {
-  private readonly logger = new Logger(SupabaseStrategy.name);
+export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
+  private readonly logger = new Logger(JwtStrategy.name);
 
   constructor(private readonly configService: ConfigService) {
     super({
