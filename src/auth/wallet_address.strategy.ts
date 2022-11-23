@@ -12,6 +12,7 @@ export class WalletAddressStrategy extends PassportStrategy(Strategy, "wallet_ad
 
   async validate(req: Request) {
     const wallet = await this.prisma.wallets.findUnique({
+      //TODO: get wallet address and chain id from requset 
       where: { address_chain_id: { 
         address: req.json()["address"],
         chain_id: req.json()["chain_id"]
