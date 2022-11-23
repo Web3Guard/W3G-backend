@@ -1,6 +1,6 @@
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["interactiveTransactions"]
+  previewFeatures = ["fieldReference"]
   engineType      = "binary"
 }
 
@@ -10,9 +10,11 @@ datasource db {
 }
 
 model profiles {
-  user_id  String     @id @db.Uuid
-  requests requests[]
-  wallets  wallets[]
+  user_id       String     @id @db.Uuid
+  api_limit     Int        @default(50)
+  request_count Int        @default(0)
+  requests      requests[]
+  wallets       wallets[]
 }
 
 model requests {
@@ -25,9 +27,9 @@ model requests {
 
 model wallets {
   address  String   @db.VarChar
-  chainId  String   @db.VarChar
+  chain_id String   @db.VarChar
   user_id  String   @db.Uuid
   profiles profiles @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
 
-  @@id([address, chainId])
+  @@id([address, chain_id])
 }

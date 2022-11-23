@@ -3,9 +3,11 @@ import { ConfigModule } from '@nestjs/config';
 import { RatingModule } from './rating/rating.module';
 import { InstantModule } from './instant/instant.module';
 import { LoggerModule } from 'nestjs-pino';
-import { PrismaService } from './prisma/prisma.service';
+import { PrismaService } from './utils/prisma.service';
 import { UtilsModule } from './utils/utils.module';
 import { AuthModule } from './auth/auth.module';
+import { APP_GUARD } from '@nestjs/core';
+import { AuthGuard } from '@nestjs/passport';
 
 @Module({
   imports: [
@@ -36,6 +38,12 @@ import { AuthModule } from './auth/auth.module';
     UtilsModule,
     AuthModule
   ],
-  providers: [PrismaService],
+  providers: [
+    PrismaService,
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuard('jwt'),
+    },
+  ],
 })
 export class AppModule {}
