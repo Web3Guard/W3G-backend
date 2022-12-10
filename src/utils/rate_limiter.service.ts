@@ -27,8 +27,9 @@ export class RateLimiterService {
                 request_count: { increment: 1 }
             }
         })
-        if (updateCount.count === 0) {
+        if (updateCount.count == 0) {
             this.checkRateLimit(userId);
         }
+        return true
     }
 }

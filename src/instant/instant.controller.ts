@@ -4,10 +4,10 @@ import {
   InstantService,
 } from 'src/instant/instant.service';
 import { TransactionDto } from 'src/instant/dto/transaction-dto';
-import { AuthGuard } from '@nestjs/passport';
+import { RateLimitGuard } from 'src/auth/rate_limit.guard';
 
 @Controller('instant')
-@UseGuards(new (AuthGuard('wallet_address'))())
+@UseGuards(RateLimitGuard)
 export class InstantController {
   constructor(private instantService: InstantService) {}
 

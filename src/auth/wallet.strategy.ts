@@ -7,11 +7,11 @@ import { SupabaseService } from 'src/utils/supabase.service';
 @Injectable()
 export class WalletAddressStrategy extends PassportStrategy(
   Strategy,
-  'wallet_address',
+  'wallet',
 ) {
   constructor(
     private prisma: PrismaService,
-    private supabase: SupabaseService,
+    private supabase: SupabaseService
   ) {
     super();
   }
@@ -26,8 +26,6 @@ export class WalletAddressStrategy extends PassportStrategy(
         },
       },
     });
-
-    console.log('wallet', wallet);
 
     if (!wallet)
       throw new UnauthorizedException(

@@ -1,10 +1,12 @@
 import { Module } from '@nestjs/common';
 import { UtilsModule } from 'src/utils/utils.module';
 import { JwtStrategy } from './jwt.strategy';
-import { WalletAddressStrategy } from './wallet_address.strategy';
+import { RateLimitGuard } from './rate_limit.guard';
+import { WalletAddressStrategy } from './wallet.strategy';
 
 @Module({
     imports: [UtilsModule],
-    providers: [JwtStrategy, WalletAddressStrategy]
+    providers: [JwtStrategy, WalletAddressStrategy, RateLimitGuard],
+    exports: [RateLimitGuard],
 })
 export class AuthModule {}

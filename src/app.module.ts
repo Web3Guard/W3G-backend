@@ -42,7 +42,7 @@ import { AuthGuard } from '@nestjs/passport';
     PrismaService,
     {
       provide: APP_GUARD,
-      useClass: AuthGuard('jwt'),
+      useClass: AuthGuard(['jwt', 'wallet']),
     },
   ],
 })
