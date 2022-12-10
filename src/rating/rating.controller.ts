@@ -1,6 +1,5 @@
 import { Controller, Get, Param, Post } from '@nestjs/common';
 import { RatingService } from 'src/rating/rating.service';
-const ethers = require('ethers');
 
 @Controller('rating')
 export class RatingController {

@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { ApiLimitExceddedException } from "src/errors";
+import { ApiLimitExceddedException } from "src/exceptions";
 import { PrismaService } from "src/utils/prisma.service";
 
 @Injectable()

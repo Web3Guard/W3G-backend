@@ -4,7 +4,7 @@ import {
   InstantService,
 } from 'src/instant/instant.service';
 import { TransactionDto } from 'src/instant/dto/transaction-dto';
-import { RateLimitGuard } from 'src/auth/rate_limit.guard';
+import { RateLimitGuard } from 'src/auth/rate-limit.guard';
 
 @Controller('instant')
 @UseGuards(RateLimitGuard)

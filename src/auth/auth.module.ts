@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { UtilsModule } from 'src/utils/utils.module';
 import { JwtStrategy } from './jwt.strategy';
-import { RateLimitGuard } from './rate_limit.guard';
+import { RateLimitGuard } from './rate-limit.guard';
 import { WalletAddressStrategy } from './wallet.strategy';
 
 @Module({
