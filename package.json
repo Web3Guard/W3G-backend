@@ -44,7 +44,8 @@
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
     "sateek": "^1.0.8",
-    "solc": "^0.8.17"
+    "solc": "^0.8.17",
+    "yarn-audit-fix": "^9.3.8"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",
