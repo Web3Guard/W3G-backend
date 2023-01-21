@@ -3,7 +3,11 @@ import { ConfigModule } from '@nestjs/config';
 import { RatingModule } from './rating/rating.module';
 import { InstantModule } from './instant/instant.module';
 import { LoggerModule } from 'nestjs-pino';
-import { SupabaseModule } from './supabase/supabase.module';
+import { PrismaService } from './utils/prisma.service';
+import { UtilsModule } from './utils/utils.module';
+import { AuthModule } from './auth/auth.module';
+import { APP_GUARD } from '@nestjs/core';
+import { AuthGuard } from '@nestjs/passport';
 
 @Module({
   imports: [
@@ -31,7 +35,15 @@ import { SupabaseModule } from './supabase/supabase.module';
 
     InstantModule,
     RatingModule,
-    SupabaseModule
+    UtilsModule,
+    AuthModule
+  ],
+  providers: [
+    PrismaService,
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuard(['jwt', 'wallet']),
+    },
   ],
 })
 export class AppModule {}

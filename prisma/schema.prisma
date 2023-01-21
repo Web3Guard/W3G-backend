@@ -1,0 +1,35 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["fieldReference"]
+  engineType      = "binary"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model profiles {
+  user_id       String     @id @db.Uuid
+  api_limit     Int        @default(50)
+  request_count Int        @default(0)
+  requests      requests[]
+  wallets       wallets[]
+}
+
+model requests {
+  request_id  String   @id @db.Uuid
+  user_id     String   @db.Uuid
+  transaction Json
+  created_at  DateTime @default(now()) @db.Timestamptz(6)
+  profiles    profiles @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model wallets {
+  address  String   @db.VarChar
+  chain_id String   @db.VarChar
+  user_id  String   @db.Uuid
+  profiles profiles @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([address, chain_id])
+}

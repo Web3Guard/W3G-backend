@@ -2,7 +2,8 @@ import { NestFactory } from '@nestjs/core';
 import { Logger, LoggerErrorInterceptor } from 'nestjs-pino';
 
 import { AppModule } from './app.module';
-import { SupabaseGuard } from './supabase/supabase.guard';
+import { HttpExceptionFilter } from './http-exception.filter';
+import { PrismaService } from './utils/prisma.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { bufferLogs: true });
@@ -14,9 +15,12 @@ async function bootstrap() {
     credentials: true,
   });
   app.useLogger(app.get(Logger));
-  app.useGlobalGuards(new SupabaseGuard());
   app.useGlobalInterceptors(new LoggerErrorInterceptor());
+  app.useGlobalFilters(new HttpExceptionFilter());
 
+  const prismaService = app.get(PrismaService);
+  await prismaService.enableShutdownHooks(app)
+  
   await app.listen(3001);
 }
 bootstrap();
